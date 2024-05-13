@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, default: mongoose } = require('mongoose');
 
 const reactionSchema = new Schema(
     {
@@ -54,5 +54,6 @@ thoughtSchema
     .set('toJSON', { getters: true, virtuals: true }); // Getter method to formar timestamp.
 
 const Thought = model('thought', thoughtSchema);
+
 
 module.exports = Thought;

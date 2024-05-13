@@ -1,9 +1,10 @@
 const Thought = require('../models/Thought');
 const User = require('../models/User');
 
+
 module.exports = {
 
-    // Get all thoughts.
+    // Get all thoughts. 
     async getAllThoughts(req, res) {
         try {
             const thoughts = await Thought.find();
@@ -111,26 +112,27 @@ module.exports = {
     async deleteReaction(req, res) {
         try {
             const { thoughtId, reactionId } = req.params;
-
-            // Finds thought by 'thoughtId'
+    
+            // Find the thought by 'thoughtId'
             const thought = await Thought.findById(thoughtId);
             if (!thought) {
                 return res.status(404).json({ message: 'Thought not found' });
             }
-
+    
             // Find the index of the reaction with the given reactionId in the thought's reactions array
-            const reactionIndex = thought.reactions.findIndex(reaction => reaction._id.toString() === reactionId);
+            const reactionIndex = thought.reactions.findIndex(reaction => reaction.reactionId.toString() === reactionId);
             if (reactionIndex === -1) {
                 return res.status(404).json({ message: 'Reaction not found' });
             }
-
-            // Removes the reaction from the thought's reaction array.
+    
+            // Remove the reaction from the thought's reactions array
             thought.reactions.splice(reactionIndex, 1);
             await thought.save();
-
-            res.json(thought);
+    
+            res.json({ message: 'Reaction deleted successfully' });
         } catch (err) {
-            res.status(400).json(err);
+            res.status(500).json(err);
         }
     }
+    
 };
