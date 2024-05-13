@@ -109,50 +109,18 @@ module.exports = {
         }
     },
 
-    // async deleteReaction(req, res) {
-    //     try {
-    //         const { thoughtId, reactionId } = req.params;
-    
-    //         // Find the thought by 'thoughtId'
-    //         const thought = await Thought.findById(thoughtId);
-    //         if (!thought) {
-    //             return res.status(404).json({ message: 'Thought not found' });
-    //         }
-    
-    //         // Find the index of the reaction with the given reactionId in the thought's reactions array
-    //         const reactionIndex = thought.reactions.findIndex(reaction => reaction.reactionId.toString() === reactionId);
-    //         if (reactionIndex === -1) {
-    //             return res.status(404).json({ message: 'Reaction not found' });
-    //         }
-    
-    //         // Remove the reaction from the thought's reactions array
-    //         thought.reactions.splice(reactionIndex, 1);
-    //         await thought.save();
-    
-    //         res.json({ message: 'Reaction deleted successfully' });
-    //     } catch (err) {
-    //         res.status(500).json(err);
-    //     }
-    // }
     async deleteReaction(req, res) {
         try {
             const { thoughtId, reactionId } = req.params;
     
-            console.log('thoughtId:', thoughtId);
-            console.log('reactionId:', reactionId);
-    
             // Find the thought by 'thoughtId'
             const thought = await Thought.findById(thoughtId);
-            console.log('thought:', thought); // Add this line to log the retrieved thought object
-    
             if (!thought) {
                 return res.status(404).json({ message: 'Thought not found' });
             }
     
             // Find the index of the reaction with the given reactionId in the thought's reactions array
             const reactionIndex = thought.reactions.findIndex(reaction => reaction.reactionId.toString() === reactionId);
-            console.log('reactionIndex:', reactionIndex); // Add this line to log the reactionIndex
-    
             if (reactionIndex === -1) {
                 return res.status(404).json({ message: 'Reaction not found' });
             }
@@ -166,6 +134,4 @@ module.exports = {
             res.status(500).json(err);
         }
     }
-    
-    
 };
