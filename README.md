@@ -24,5 +24,5 @@ We are also able to see the database by opening *'MongoDB compass'*, once the ap
 ---
 
 ### Personal info :
-- GitHub repository of the project :
-- Video example of the implementation of operations :
+- GitHub repository of the project : https://github.com/BryanGC96/SocialNetwork-API
+- Video tutorial of the implementation of operations : https://drive.google.com/file/d/1eK4NUeDioQTgw6uxemJ4yXWGfFDKDSyB/view?usp=sharing
